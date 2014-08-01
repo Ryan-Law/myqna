@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$appname}></title>
+<link href="./resources/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/base.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/postedit.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]>
+<script type="text/javascript" src="./resources/js/DDbelated.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('.header-top,.header-center,.header-bottom,#container,.orangebar,.header-sun,.footer');
+</script>
+<![endif]-->
+<script type="text/javascript" src="./resources/js/jquery-1.9.0.mini.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$(".content").hide().fadeIn(500);
+$("#postsumbit").click(function(){
+	$.ajax({
+		url:"./post.php?act=editproc",
+		type:"post",
+		data: $("#posteditform").serialize(),
+		success:function(res){
+			if(res=='0'){
+				alert('ID不能为空！');
+			}
+			if(res=='-1'){
+				alert('授权码错误！');
+			}
+			if(res=='-2'){
+				alert('内容没有更改！');
+			}
+			if(res=='1'){
+				alert('更新成功！');
+				var a = $("#hiddenid").val();
+				window.location = "./question.php?id="+a+"\n";
+			}
+		}
+	});
+});
+
+});
+</script>
+</head>
+<body>
+	<div id="headfix"></div>
+	<div id="container">
+		<div class="header">
+			<{include file="header.html"}>
+			<span><a href="javascript:history.back();">[返回]</a></span>
+		</div>
+		<div class="orangebar"></div>
+		<div class="content">
+			<form id="posteditform">
+				<table class="content-table">
+					<tr>
+						<td>所属分类：</td>
+						<td>
+							<select name="cat_id">
+								<{foreach from=$category item=list}>
+									<{if $qlist.cat_id == $list.cat_id}>
+									<option value="<{$list.cat_id}>" selected="selected"><{$list.cat_name}></option>
+									<{else}>
+									<option value="<{$list.cat_id}>"><{$list.cat_name}></option>
+									<{/if}>
+								<{/foreach}>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>问题：</td>
+						<td><textarea name="question" class="content-point" cols="66" rows="10"><{$qlist.question}></textarea></td>
+					</tr>
+					<tr>
+						<td>知识点：</td>
+						<td><textarea name="point" class="content-point" cols="66" rows="3"><{$qlist.point}></textarea></td>
+					</tr>
+					<tr>
+						<td>答案：</td>
+						<td><textarea name="answer" class="content-answer" cols="66" rows="10"><{$qlist.answer}></textarea></td>
+					</tr>
+					<tr>
+						<td>
+							授权码：
+						</td>
+						<td>
+							<input style="width: 150px;" type="password" name="authcode"></input>&nbsp;<span style="color:#F67E32; font-size: 11px;">* 需要输入授权吗才能对问题进行修改</span>
+							&nbsp;&nbsp;&nbsp;<input type="button" value="提交" id="postsumbit" />
+						</td>
+					</tr>
+					<input type="hidden" id="hiddenid" name="id" value="<{$qlist.id}>"></input>
+				</table>
+			</form>
+		</div>
+		<div class="orangebar"></div>
+		<div class="footer">
+			<{include file="footer.html"}>
+		</div>
+	</div>
+	<div id="foorfix"></div>
+</body>
+</html>

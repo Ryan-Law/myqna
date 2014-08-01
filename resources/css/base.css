@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+body {
+position: relative; background-image: url(../img/Playtime_background_yellow.jpg); margin: 0 auto;
+width: 700px; font-family: 'Helvetica Neue', 'Arial', sans-serif; color: #6D4722;
+}
+
+a {
+color: #6D4722; text-decoration: none;
+}
+
+a:hover {
+color: #F67E32;
+}
+
+#headfix {
+position: relative; background-image: url("../img/Playtime_header_bg.jpg"); margin-top: 5px;
+width: 700px; height: 20px;
+}
+
+#container {
+position: relative; background-image: url("../img/Playtime_page_bg-6.png"); width: 700px;
+}
+
+.header,.content,.footer {
+position: relative; margin: 0 auto; width: 645px;
+}
+
+.header-top {
+background-image: url("../img/Kids_green_header_01.png"); height: 22px;
+}
+
+.header-center {
+background-image: url("../img/Kids_green_header_02_1.png"); height: 107px;
+}
+
+.header-bottom {
+background-image: url("../img/Kids_green_header_03.png"); height: 16px;
+}
+
+.header-sun {
+background-image: url("../img/Playtime_Sun-4.png"); position: absolute; right: -5px; top: 0;
+width: 190px; height: 172px; z-index: 1;
+}
+
+.header h1 {
+position: absolute; top: 20px; left: 30px; color: #FFF; font-size: 48px; font-weight: bold;
+}
+
+.header ul {
+position: absolute; top: 105px; left: 25px;
+}
+
+.header li {
+_display: inline; left: 30px; float: left; margin-right: 15px; font-weight: bold; font-size: 15px; text-shadow: 1px 1px 3px #CCC;
+}
+
+.header span {
+padding: 5px 0; font-size: 13px; font-weight: bold; margin-left: 20px; display: block;
+color: #F67E32;
+}
+
+.orangebar {
+clear: both; overflow: hidden; margin: 0 auto; background-image: url("../img/Orange_bar.png");
+width: 627px; height: 8px; width: 627px;
+}
+
+.footer {
+margin-top: 10px; padding-bottom: 5px; background-image: url("../img/shapeimage_1.png");
+background-repeat: no-repeat; width: 640px; height: 83px;
+}
+
+.footer p {
+color: #FFF; font-size: 13px; font-weight: bold; position: absolute; top: 25px; left: 200px;text-shadow: 1px 1px 2px #AAA;
+}
+
+.footer span{
+font-size: 10px; position: absolute; top: 60px; left: 160px;text-shadow: 1px 1px 2px #AAA;
+}
+
+.footer a {
+text-decoration: underline;
+}
+
+#foorfix {
+position: relative; background-image: url("../img/Playtime_footer_bg.jpg"); width: 700px;
+height: 17px; margin-bottom: 5px;
+}

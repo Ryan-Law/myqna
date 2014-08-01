@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$appname}></title>
+<link href="./resources/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/base.css" rel="stylesheet" type="text/css" />
+<style type="text/css" media="screen">
+#littlewhale{
+	position: absolute;
+	right: 25px;
+	top:100px;
+}
+
+#user-regis-form {
+	padding: 50px 0 45px 0;
+	margin: 20px 0 20px 35px;
+	font-size: 12px;
+	width: 260px;
+	text-shadow: grey 0 2px 3px;
+	border: 1px dotted #F67E32;
+}
+#user-regis-form p {
+	margin-bottom: 5px;
+	text-align: center;
+}
+#user-regis-form h4 {
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+</style>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="./resources/js/DDbelated.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('.header-top,.header-center,.header-bottom,#container,.orangebar,.header-sun,.footer');
+</script>
+<![endif]-->
+<script type="text/javascript" src="./resources/js/jquery-1.9.0.mini.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#user-regis-btn").click(function(){
+		if($("#user-regis-form input[name='username']").val()==="" || 
+			$("#user-regis-form input[name='password']").val()===""){
+			alert('用户名和密码不能为空');
+			return false;
+		}
+		$.ajax({
+			url: './user.php?act=regis',
+			type: 'post',
+			data: $("#user-regis-form").serialize(),
+			success: function(res){
+				if(res=="-2"){
+					alert("验证码错误");
+				}else if(res=="-3"){
+					alert("用户名已存在");
+				}else if(res=="1"){
+					alert("注册成功");
+					location = "./index.php";
+				}else if(res=="0"){
+					alert("注册失败");
+				}
+			}
+		})
+	});
+	$("#captcha-img").click(function(){
+		$(this).attr("src","./user.php?act=captcha&t="+Math.random());
+	});
+});
+</script>
+</head>
+<body>
+	<div id="headfix"></div>
+	<div id="container">
+		<div class="header">
+			<{include file="header.html"}>
+
+		</div>
+		<div class="orangebar"></div>
+		<div class="content">
+			<form action="./user.php?act=regis" method="post" id="user-regis-form">
+				<h4>注册新账号</h4>
+				<p>　账号：<input type="text" name="username" value=""/></p>
+				<p>　密码：<input type="text" name="password" value=""/></p>
+				<p>　邮箱：<input type="text" name="email" value=""/></p>
+				<p>验证码：<input type="text" name="captcha" value="" style="width:45px;" maxlength="6"/>
+					<img src="./user.php?act=captcha" id="captcha-img" style="display:inline;"/>
+				</p>
+				<p><input type="button" id="user-regis-btn" value="注册"/>&nbsp;<input type="reset" value="重新填写"/></p>
+			</form>
+			<img src="./resources/img/Playtime_whale-1.png" id="littlewhale"/>
+		</div>
+		<div class="orangebar"></div>
+		<div class="footer">
+			<{include file="footer.html"}>
+		</div>
+	</div>
+	<div id="foorfix"></div>
+</body>
+</html>

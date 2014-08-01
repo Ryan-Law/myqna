@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$appname}></title>
+<link href="./resources/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/base.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.content {width: 200px; padding: 20px 0 20px 0; margin: 0 auto; color: #F67E32; font-size: 16px;font-weight: bold;}
+</style>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="./resources/js/DDbelated.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('.header-top,.header-center,.header-bottom,#container,.orangebar,.header-sun,.footer');
+</script>
+<![endif]-->
+<script type="text/javascript" src="./resources/js/jquery-1.9.0.mini.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$(".content").hide().fadeIn(500);
+});
+</script>
+</head>
+<body>
+	<div id="headfix"></div>
+	<div id="container">
+		<div class="header">
+			<div class="header-top"></div>
+			<div class="header-center"></div>
+			<div class="header-bottom"></div>
+			<div class="header-sun"></div>
+			<h1>i3Code QnA</h1>
+		</div>
+		<div class="orangebar"></div>
+		<div class="content">
+			<h3>消息提示：<{$statemsg}></h3>
+			<a href="javascript:history.go(-1);">　　　[点击返回]</a>
+		</div>
+		<div class="orangebar"></div>
+		<div class="footer">
+			<{include file="footer.html"}>
+		</div>
+	</div>
+	<div id="foorfix"></div>
+</body>
+</html>

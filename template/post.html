@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$appname}></title>
+<link href="./resources/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/base.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/post.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]>
+<script type="text/javascript" src="./resources/js/DDbelated.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('.header-top,.header-center,.header-bottom,#container,.orangebar,.header-sun,.footer');
+</script>
+<![endif]-->	
+<script type="text/javascript" src="./resources/js/jquery-1.9.0.mini.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".content").hide().fadeIn(500);
+		$("#postsubmit").click(function() {
+			$.ajax({
+				url : "./post.php?act=add",
+				type : "post",
+				data : $("#postsubmitform").serialize(),
+				success : function(res) {
+					var r = eval("("+res+")")
+					if (res == "0") {
+						alert("问题不能为空！");
+					}
+					if (res == '-2') {
+						alert("添加失败！");
+					}
+					if (r.status == "1") {
+						alert("添加成功！");
+						var a = $("#catid").val();
+						window.location = "./question.php?id=" + r.id + "\n";
+					}
+				}
+			});
+		});
+	}); 
+</script>
+</head>
+<body>
+	<div id="headfix"></div>
+	<div id="container">
+		<div class="header">
+			<{include file="header.html"}>
+			<span><a href="javascript:history.back();">[返回]</a></span>
+		</div>
+		<div class="orangebar"></div>
+		<div class="content">
+			<form id="postsubmitform">
+				<table class="content-table">
+					<tr>
+						<td>所属分类：</td>
+						<td>
+							<select name="cat_id" id="catid">
+								<{foreach from=$category item=list}>
+									<option value="<{$list.cat_id}>"><{$list.cat_name}></option>
+								<{/foreach}>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>问题：</td>
+						<td><textarea name="question" class="content-question" cols="66" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td>知识点：</td>
+						<td><textarea name="point" class="content-point" cols="66" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<td>答案：</td>
+						<td><textarea name="answer" class="content-answer" cols="66" rows="10"></textarea></td>
+					</tr>
+					<tr align="center">
+						<td colspan="2">
+							<input type="button" value="提交" id="postsubmit"/>&nbsp;
+							<input type="reset" value="重置"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="orangebar"></div>
+		<div class="footer">
+			<{include file="footer.html"}>
+		</div>
+	</div>
+	<div id="foorfix"></div>
+</body>
+</html>

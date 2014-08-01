@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.content-ul {
+font-size: 12px; font-weight: bold;
+}
+
+.content-ul li {
+margin-left: 10px; line-height: 20px;
+}
+
+.content-ul span {
+position: absolute; right: 10px;
+}
+
+.content p {
+float: right; font-size: 12px; font-weight: bold; padding: 2px 10px 5px 0;
+}
+
+.content p a {
+color: #F67E32;
+}

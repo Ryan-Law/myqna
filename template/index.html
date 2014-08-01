@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><{$appname}></title>
+<link href="./resources/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/base.css" rel="stylesheet" type="text/css" />
+<link href="./resources/css/index.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]>
+<script type="text/javascript" src="./resources/js/DDbelated.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('.header-top,.header-center,.header-bottom,#container,.orangebar,.header-sun,.footer');
+</script>
+<![endif]-->
+<script type="text/javascript" src="./resources/js/jquery-1.9.0.mini.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".content").hide().fadeIn(500);
+    });
+</script>
+</head>
+<body>
+	<div id="headfix"></div>
+	<div id="container">
+		<div class="header">
+			<{include file="header.html"}>			
+			<span><a href="./post.php">[提问]</a>&nbsp;&nbsp;本类别已收录 <{$totals}> 个问题</span>	
+		</div>
+		<div class="orangebar"></div>
+		<div class="content">
+			<ul class="content-ul">
+				<{IF $artlist eq null}>
+				<div style="width: 500px; height: 40px; padding-top:30px;  margin: 0 auto; text-align:center;">对不起，该栏目下暂时还没有提问</div>
+				<{/IF}>
+				<{foreach from=$artlist item=list}>
+				<li><a href="./question.php?id=<{$list.id}>">[<{$list.cat_name}>]&nbsp;<{$list.question|cn_truncate:26|escape}></a><span><{$list.pubtime|date_format:"Y-m-d"}></span></li>
+				<{/foreach}>
+			</ul>
+			<p><{$pagelist}></p>
+		</div>
+		<div class="orangebar"></div>
+		<div class="footer">
+			<{include file="footer.html"}>
+		</div>
+	</div>
+	<div id="foorfix"></div>
+</body>
+</html>
