@@ -5,9 +5,13 @@
 
 ##应用架构特色：
 **a)遵从MVC模式设计，最大限度提高代码复用**
+
 **b)采用Smarty模板，可以让视图层分离更彻底**
+
 **c)使用php5 autoload新特性延迟类加载**
+
 **d)$_POST，$_GET，$_COOKIE参数自动转义**
+
 **e)使用了性能更强的MySQLi数据库驱动类**
 
 ##开发环境：
@@ -17,4 +21,5 @@
 
 ##安装方法：
 **1.数据库初始化文件 install/date.sql**
+
 **2.系统配置文件 includes/cfg_setting.php**
